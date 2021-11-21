@@ -2,8 +2,9 @@
 #include<stdlib.h>
 #include<string.h>
 
-//Declare struct Compte
+//Declare un countour global to increase the size of comptes table 
 int  count=0;
+//Declare struct Compte
 typedef struct
 	 {
 		char cin[8];
@@ -11,6 +12,7 @@ typedef struct
 		char pnom[15];
 		float montant;
 	 }compte;
+	 //Methode for add sole compte bancaire
 	 void createCompte(compte c[])
 	 {
 	 	
@@ -26,12 +28,13 @@ typedef struct
 	 	
 	 	
 	 }
+	  //Methode for add many compte bancaire
 	 void multiComptes(compte c[])
 	 {
 	 	int i,n;
-	 	printf("Enter the number og comptes that you want to create please !! \n");
+	 	printf("Enter the number of comptes that you want to create please !! \n");
 	 	scanf("%d",&n);
-	 	for(i=count;i<=count+n;i++)
+	 	for(i=count;i<n+count;i++)
 	 	{
 	 			printf("Enter your CIN : \t");
 			 	scanf("%s",c[i].cin);
@@ -44,6 +47,63 @@ typedef struct
 		 }
 		 count+=n;
 	 }
+	 //Create methode for operation "Retrait / Depot"
+	 void operation(compte c[])
+	 {
+	 	float withdraw,deposit;
+	 	int i,choice,exist=0;
+	 	char cin[10];
+	 	printf("\t \t \t Click 1 to Retrait / 2 to Depot \n");
+	 	scanf("%d",&choice);
+	 	if(choice==1)
+	 	{ 
+	 	printf("Enter your cin please \n");
+	 	scanf("%s",cin);
+	 	printf("\t \t \t How much money do you want to retire?\n");
+	 	scanf("%f",&withdraw);
+	 	for(i=0;i<count;i++)
+	 	{
+	 		if(strcmp(c[i].cin,cin)==0)
+	 		{
+	 			exist=1;
+			 }
+			 
+		 }
+		 if(exist==1)
+		 {
+		 		c[i].montant-=withdraw;
+		 }
+		 else 
+			 { 
+			 printf("Error account doesn't exist !!\n'");
+			 
+			 }
+		 }
+		 else if(choice==2)
+	 	{ 
+	 	printf("Enter your cin please \n");
+	 	scanf("%s",cin);
+	 	printf("\t \t \t How much money do you want to deposit ?\n");
+	 	scanf("%f",&deposit);
+	 	for(i=0;i<count;i++)
+	 	{
+	 		if(strcmp(c[i].cin,cin)==0)
+	 		{
+	 			exist=1;
+			 }
+			
+		 }
+		 if(exist==1)
+		 {
+		 		c[i].montant+=deposit;
+		 }
+		  { 
+			 printf("Error account doesn't exist !!\n'");
+		
+			 }
+		 }
+	 }
+	 
 	 void affichage(compte c[])
 	 {
 	 
@@ -76,8 +136,12 @@ typedef struct
 			case 2 : 
 			multiComptes(c);
 			break;
+			case 3:
+				operation(c);
+				break;
 			case 4 :
 				affichage(c);
+				break;
 		}
 	}while(choix!=5);
 
