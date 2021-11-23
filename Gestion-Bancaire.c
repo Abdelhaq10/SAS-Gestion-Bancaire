@@ -8,8 +8,8 @@ int  count=0;
 typedef struct
 	 {
 		char cin[8];
-		char nom[15];
-		char pnom[15];
+		char name[15];
+		char lname[15];
 		float montant;
 	 }compte;
         void isExist(compte c[],int count)
@@ -18,21 +18,19 @@ typedef struct
              char cin[25];
 	     do{
                 found = 1;
-                printf("\t \t \t Enter your CIN : \t");
+                printf("\t \t \t Enter Your CIN : \t");
                 scanf("%s",cin);
 
             for(int x = 0; x < count; x++){
 
             if(strcmp(cin,c[x].cin) == 0){
                 found = 0;//is existe
-         printf("\t \t \t \t [ERROR] Already exists \n");
+         printf("\t \t \t \t [ERROR] Already Exists \n");
          break;
             }
             }
 	     }while(found == 0);
-
 	     strcpy(c[count].cin, cin);
-
         }
 
 	 //Method for add sole account bancaire
@@ -42,12 +40,11 @@ typedef struct
                 printf("\t \t \t **************** ACCOUNT N%d : ***************\n",count+1);
                 printf("\t \t \t_______________________________________________\n");
                 isExist(c,count);
-
-			 	printf("\t \t \t Enter your name : \t");
-			 	scanf("%s",c[count].nom);
-			 	printf("\t \t \t Enter your last name : \t");
-			 	scanf("%s",c[count].pnom);
-			 	printf("\t \t \t Enter montant : \t");
+			 	printf("\t \t \t Enter Your Name : \t");
+			 	scanf("%s",c[count].name);
+			 	printf("\t \t \t Enter Your Last Name : \t");
+			 	scanf("%s",c[count].lname);
+			 	printf("\t \t \t Enter Montant : \t");
 			 	scanf("%f",&c[count].montant);
 			 	count++;
 			 	system("cls");
@@ -56,10 +53,8 @@ typedef struct
 	 void multiComptes(compte c[])
 	 {
 	 	int i,n;
-	 	printf("\t \t \t How many accounts do you want to create ? \t");
-
+	 	printf("\t \t \t How Many Accounts Do You Want To Create ? \t");
 	 	scanf("%d",&n);
-
 	 	for(i=0;i<n;i++)
 	 	{
                  int index = i + count;
@@ -69,15 +64,14 @@ typedef struct
 
                 char cin[10];
                 isExist(c,index);
-
-			 	printf("\t \t \t Enter your name : \t");
-			 	scanf("%s",c[index].nom);
-			 	printf("\t \t \t Enter your last name : \t");
-			 	scanf("%s",c[index].pnom);
-			 	printf("\t \t \t Enter montant : \t");
+			 	printf("\t \t \t Enter Your Name : \t");
+			 	scanf("%s",c[index].name);
+			 	printf("\t \t \t Enter Your Last Name : \t");
+			 	scanf("%s",c[index].lname);
+			 	printf("\t \t \t Enter Montant : \t");
 			 	scanf("%f",&c[index].montant);
-                system("cls");
 		 }
+		  system("cls");
 		 	count+=n;
 	 }
 	 //Create method for operation "Retrait / Depot"
@@ -86,17 +80,16 @@ typedef struct
 	 	float withdraw,deposit;
 	 	int i,exist=0,pos;
 	 	char cin[10],choice[10];
-	 	printf("\t \t \t Do u want to Retrait / Depot :  \t");
+	 	printf("\t \t \t Do You Want To Withdraw / Depot :  \t");
 	 	scanf("%s",choice);
-	 	if(stricmp(choice,"retrait")==0)
+	 	if(stricmp(choice,"draw")==0)
 	 	{
-	 	printf("\t \t \t Enter your CIN please \n");
+	 	printf("\t \t \t Enter Your CIN Please \t");
 	 	scanf("%s",cin);
-	 	printf("\t \t \t How much money do you want to retire?\n");
+	 	printf("\t \t \t How Much Money Do You Want To Retire?\t");
 	 	scanf("%f",&withdraw);
 	 	for(i=0;i<count;i++)
 	 	{
-
 	 		if(stricmp(c[i].cin,cin)==0)
 	 		{
                 pos=i;
@@ -106,7 +99,7 @@ typedef struct
 		 }
             if(exist==0)
 			 {
-			 printf("\t \t \t Error account doesn't exist !!\n'");
+                printf("\t \t \t Error Account Doesn't Exist !!\n'");
 			 }
 			 else
              {
@@ -115,20 +108,18 @@ typedef struct
                       c[pos].montant-=withdraw;
                  }
                 else{
-                     printf("\t \t \t The money you want to withdraw is bigger then the money in your account \n");
+                     printf("\t \t \t The Money That You Want To Withdraw Is More Than Your Account Balance \n");
                 }
              }
 		 }
 		 else if(stricmp(choice,"depot")==0)
 	 	{
-	 	printf("Enter your cin please \n");
+	 	printf("\t \t \t Enter Your CIN Please \t");
 	 	scanf("%s",cin);
-	 	printf("\t \t \t How much money do you want to deposit ?\n");
+	 	printf("\t \t \t How Much Money Do You Want To Deposit ?\t");
 	 	scanf("%f",&deposit);
-
 	 	for(i=0;i<count;i++)
 	 	{
-
 	 		if(strcmp(c[i].cin,cin)==0)
 	 		{
                 pos=i;
@@ -136,12 +127,10 @@ typedef struct
 	 			break;
             }
         }
-
-		 }
-
-		  if(exist==0)
+        if(exist==0)
 			 {
-			 printf("Error account doesn't exist !!\n'");
+
+			 printf("\t \t \t Error Account Doesn't Exist !!\n'");
 			 }
 			 else
              {
@@ -150,9 +139,12 @@ typedef struct
                       c[pos].montant+=deposit;
                  }
                 else{
-                     printf("\t \t \t The money you want to deposit is less then zero \n");
+                     printf("\t \t \t The Money You Want To Deposit Is Less Then Zero \n");
                 }
              }
+		 }
+
+
 		 }
 
 		 //Methods of Sort
@@ -177,7 +169,7 @@ typedef struct
 	 }
 	 for(i=0;i<count;i++)
 	 	{
-	 		printf("\t \t \t CIN: %s\t Nom :  %s\t Prenom : %s\t Montant : %.2f \n",c[i].cin,c[i].nom,c[i].pnom,c[i].montant);
+	 		printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
         }
 	 }
 	 //Sort descendant
@@ -201,7 +193,7 @@ typedef struct
 	 }
 	 for(i=0;i<count;i++)
 	 	{
-	 		printf("\t \t \t CIN: %s\t Nom :  %s\t Prenom : %s\t Montant : %.2f \n",c[i].cin,c[i].nom,c[i].pnom,c[i].montant);
+	 		printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
         }
 	 }
 	 //Sort ascendant from value
@@ -223,7 +215,7 @@ typedef struct
              }
          }
          }
-         printf("\t \t \t Enter montant introduit : \t");
+         printf("\t \t \t Enter Amount Introduced : \t");
          scanf("%f",&chiffre);
      for(i=0;i<count;i++)
      {
@@ -234,7 +226,7 @@ typedef struct
          }
         for(i=pos;i<count;i++)
         {
-           printf("\t \t \t CIN: %s\t Nom :  %s\t Prenom : %s\t Montant : %.2f \n",c[i].cin,c[i].nom,c[i].pnom,c[i].montant);
+           printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
         }
 
      }
@@ -257,7 +249,7 @@ typedef struct
              }
          }
          }
-         printf("\t \t \t Enter montant introduit : \t");
+         printf("\t \t \t Enter Amount Introduced : \t");
          scanf("%f",&chiffre);
      for(i=0;i<count;i++)
      {
@@ -268,7 +260,7 @@ typedef struct
          }
         for(i=count-1;i>=pos;i--)
         {
-           printf("\t \t \t CIN: %s\t Nom :  %s\t Prenom : %s\t Montant : %.2f \n",c[i].cin,c[i].nom,c[i].pnom,c[i].montant);
+           printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
         }
 
      }
@@ -305,7 +297,7 @@ typedef struct
     {
         int exist=0,pos;
         char cin[10];
-        printf("\t \t \tEnter your CIN please \n");
+        printf("\t \t \t Enter Your CIN please : \t");
 	 	scanf("%s",cin);
 	 	for(int i=0;i<count;i++)
         {
@@ -318,7 +310,7 @@ typedef struct
         }
     if(exist==1)
        {
-            printf("\t \t \t CIN : %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[pos].cin,c[pos].nom,c[pos].pnom,c[pos].montant);
+            printf("\t \t \t CIN : %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[pos].cin,c[pos].name,c[pos].lname,c[pos].montant);
        }
        else{
         printf("\t \t \t the account is doesn't exist !!!\n");
@@ -347,13 +339,13 @@ typedef struct
 	 for(i=0;i<3;i++)
      {
          c[i].montant+=(c[i].montant * 1.3)/100;
-         printf("\t \t \t CIN: %s\t Nom :  %s\t Prenom : %s\t Montant : %.2f \n",c[i].cin,c[i].nom,c[i].pnom,c[i].montant);
+         printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
      }
     }
     void quitter()
     {
         char choice[3];
-        printf("\t \t \t The System ll shut down do u want to quitter ? \t(yes/no) \t");
+        printf("\t \t \t The System Well Shut Down Do You Want To Quit ?   (yes/no) \t");
         scanf("%s",choice);
 	 	printf("\n");
 	 	if(stricmp(choice,"yes")==0)
@@ -363,24 +355,27 @@ typedef struct
 	 int main()
 {
 
-	int choix;
+	int option;
 	compte c[100];
 	do
 	{
             printf("\n");
             printf("\t \t \t **********************MENU******************** \n");
             printf("\t \t \t ______________________________________________\n");
-			printf("\t \t \t 1: Create compte bancaire \n");
-			printf("\t \t \t 2: Create plusieurs comptes bancaires \n");
+            printf("\n");
+			printf("\t \t \t 1: Create Bank Account \n");
+			printf("\t \t \t 2: Create Multiple Bank Accounts \n");
 			printf("\t \t \t 3: Operations \n");
-			printf("\t \t \t 4: Affichage \n");
-			printf("\t \t \t 5: Recheche \n");
+			printf("\t \t \t 4: Display \n");
+			printf("\t \t \t 5: Research \n");
 			printf("\t \t \t 6: Fidelisation \n");
-			printf("\t \t \t 7: Quitter  \n");
-			printf("\t \t \t 8: clean  \n");
-			printf("\t \t \t Enter your choix please : \t");
-			scanf("%d",&choix);
-		switch(choix)
+			printf("\t \t \t 7: Clean  \n");
+			printf("\t \t \t 8: Quit  \n");
+			printf("\t \t \t ______________________________________________\n");
+            printf("\n");
+			printf("\t \t \t Enter Your Option Please : \t");
+			scanf("%d",&option);
+		switch(option)
 		{
 			case 1:
                 createCompte(c);
@@ -401,16 +396,13 @@ typedef struct
                 fidelisation(c);
                 break;
             case 7 :
-                quitter();
-                break;
-            case 8 :
                 system("cls");
                 break;
+            case 8 :
+                quitter();
+                break;
 		}
-	}while(choix!=9);
+
+	}while(option!=9);
 
 }
-
-
-
-
