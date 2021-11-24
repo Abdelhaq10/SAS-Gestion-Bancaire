@@ -33,7 +33,7 @@ typedef struct
 	       }while(found == 0);
 	     strcpy(c[count].cin, cin);
         }
-	 //Method for add sole account bancaire
+	 //Method for add sole bank account
 	 void createCompte(compte c[])
 	 {
                  printf("\n");
@@ -49,7 +49,7 @@ typedef struct
 			 	count++;
 			 	system("cls");
 	 }
-	  //Method for add many accounts bancaire
+	  //Method for add many bank accounts
 	 void multiComptes(compte c[])
 	 {
 	 	int i,n;
@@ -292,7 +292,7 @@ typedef struct
     {
         int exist=0,pos;
         char cin[10];
-        printf("\t \t \t Enter Your CIN please : \t");
+        printf("\t \t \t Enter CIN Of The Account You Looking For : \t");
 	 	scanf("%s",cin);
 	 	for(int i=0;i<count;i++)
         {
@@ -332,7 +332,7 @@ typedef struct
 	 for(i=0;i<3;i++)
      {
          c[i].montant+=(c[i].montant * 1.3)/100;
-         printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f DH \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
+         printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f DH2 \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
      }
     }
     void quitter()
