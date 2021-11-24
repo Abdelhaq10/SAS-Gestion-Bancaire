@@ -332,7 +332,7 @@ typedef struct
 	 for(i=0;i<3;i++)
      {
          c[i].montant+=(c[i].montant * 1.3)/100;
-         printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f DH2 \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
+         printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f DH \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
      }
     }
     void quitter()
@@ -345,7 +345,58 @@ typedef struct
 	 	if(stricmp(choice,"yes")==0)
         exit(0);
     }
+    void Delete(compte c[])
+    {
+        int i,pos=0;
+        char cin[100];
+        printf("\t \t \t Enter Your CIN Please \t");
+	 	scanf("%s",cin);
+	 	compte tmp;
+        for(i=0;i<count;i++)
+        {
+            if(strcmp(c[i].cin,cin)==0)
+	 		{
+	 		    pos=i;
+            }
+        }
+        for(i=pos;i<count-1;i++)
+        {
+            c[i]=c[i+1];
+        }
+        for(i=0;i<count-1;i++)
+        {
+             printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f DH \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
+        }
+            count-=1;
+        }
 
+
+    void modifie(compte c[])
+    {
+        int i,ex=0,pos=0;
+        char cin[10],name[20],lname[20];
+        printf("\t \t \t Enter Your CIN Please \t");
+	 	scanf("%s",cin);
+	 	for(i=0;i<count;i++)
+        {
+         if(strcmp(c[i].cin,cin)==0)
+	 		{
+            ex=1;
+            pos=i;
+            }
+        }
+        if(ex==1)
+        {
+             printf("\t \t \t Enter Your Name : \t");
+			 	scanf("%s",name);
+			 	printf("\t \t \t Enter Your Last Name : \t");
+			 	scanf("%s",lname);
+	 		    strcpy(c[pos].name,name);
+	 		    strcpy(c[pos].lname,lname);
+        }
+        else
+             printf("\t \t \t The Account Is Doesn't Exist !!!\n");
+    }
 	 int main()
 {
 
@@ -359,12 +410,14 @@ typedef struct
             printf("\n");
 			printf("\t \t \t 1: Create Bank Account \n");
 			printf("\t \t \t 2: Create Multiple Bank Accounts \n");
-			printf("\t \t \t 3: Operations \n");
-			printf("\t \t \t 4: Display \n");
-			printf("\t \t \t 5: Research \n");
-			printf("\t \t \t 6: Fidelisation \n");
-			printf("\t \t \t 7: Clean  \n");
-			printf("\t \t \t 8: Quit  \n");
+			printf("\t \t \t 3: Modifie Bank Account \n");
+			printf("\t \t \t 4: Delete Bank Account \n");
+			printf("\t \t \t 5: Operations \n");
+			printf("\t \t \t 6: Display \n");
+			printf("\t \t \t 7: Research \n");
+			printf("\t \t \t 8: Fidelisation \n");
+			printf("\t \t \t 9: Clean  \n");
+			printf("\t \t \t 10: Quit  \n");
 			printf("\t \t \t ______________________________________________\n");
             printf("\n");
 			printf("\t \t \t Enter Your Option Please : \t");
@@ -378,24 +431,31 @@ typedef struct
 			case 2 :
                 multiComptes(c);
 			break;
-			case 3:
+            case 3 :
+                modifie(c);
+                break;
+            case 4 :
+                Delete(c);
+                break;
+			case 5:
 				operation(c);
 				break;
-			case 4 :
+			case 6 :
 				affichage(c);
 				break;
-            case 5 :
+            case 7 :
                 recherche(c);
                 break;
-            case 6 :
+            case 8 :
                 fidelisation(c);
                 break;
-            case 7 :
+            case 9 :
                 system("cls");
                 break;
-            case 8 :
+            case 10 :
                 quitter();
                 break;
+
 		}
-	}while(option!=9);
+	}while(option!=11);
 }
