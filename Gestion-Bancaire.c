@@ -21,15 +21,16 @@ typedef struct
                 printf("\t \t \t Enter Your CIN : \t");
                 scanf("%s",cin);
 
-            for(int x = 0; x < count; x++){
-
-            if(strcmp(cin,c[x].cin) == 0){
-                found = 0;//is existe
-         printf("\t \t \t \t [ERROR] Already Exists \n");
-         break;
-            }
-            }
-	     }while(found == 0);
+            for(int x = 0; x < count; x++)
+                {
+                    if(strcmp(cin,c[x].cin) == 0)
+                    {
+                        found = 0;//is exist
+                         printf("\t \t \t \t [ERROR] Already Exists \n");
+                         break;
+                    }
+                }
+	       }while(found == 0);
 	     strcpy(c[count].cin, cin);
         }
 	 //Method for add sole account bancaire
@@ -81,7 +82,7 @@ typedef struct
 	 	char cin[10],choice[10];
 	 	printf("\t \t \t Do You Want To Withdraw / Depot :  \t");
 	 	scanf("%s",choice);
-	 	if(stricmp(choice,"draw")==0)
+	 	if(stricmp(choice,"withdraw")==0)
 	 	{
 	 	printf("\t \t \t Enter Your CIN Please \t");
 	 	scanf("%s",cin);
@@ -168,7 +169,7 @@ typedef struct
 	 }
 	 for(i=0;i<count;i++)
 	 	{
-	 		printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
+	 		printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f DH \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
         }
 	 }
 	 //Sort descendant
@@ -191,7 +192,7 @@ typedef struct
 	 }
 	 for(i=0;i<count;i++)
 	 	{
-	 		printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
+	 		printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f DH \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
         }
 	 }
 	 //Sort ascendant from value
@@ -224,7 +225,7 @@ typedef struct
          }
         for(i=pos;i<count;i++)
         {
-           printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
+           printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f DH \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
         }
      }
       //Sort Descendant from value
@@ -256,7 +257,7 @@ typedef struct
          }
         for(i=count-1;i>=pos;i--)
         {
-           printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
+           printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f DH \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
         }
      }
 	 void affichage(compte c[])
@@ -304,7 +305,7 @@ typedef struct
         }
     if(exist==1)
        {
-            printf("\t \t \t CIN : %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[pos].cin,c[pos].name,c[pos].lname,c[pos].montant);
+            printf("\t \t \t CIN : %s\t Name :  %s\t Lname : %s\t Montant : %.2f DH \n",c[pos].cin,c[pos].name,c[pos].lname,c[pos].montant);
        }
        else{
         printf("\t \t \t The Account Is Doesn't Exist !!!\n");
@@ -331,7 +332,7 @@ typedef struct
 	 for(i=0;i<3;i++)
      {
          c[i].montant+=(c[i].montant * 1.3)/100;
-         printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
+         printf("\t \t \t CIN: %s\t Name :  %s\t Lname : %s\t Montant : %.2f DH \n",c[i].cin,c[i].name,c[i].lname,c[i].montant);
      }
     }
     void quitter()
